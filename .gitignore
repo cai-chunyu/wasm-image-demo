@@ -1,0 +1,38 @@
+# Dependencies
+web/node_modules/
+web/.pnp
+web/.pnp.js
+
+# Production
+web/out/
+web/.next/
+web/build/
+
+# Debug
+web/npm-debug.log*
+web/yarn-debug.log*
+web/yarn-error.log*
+
+# Local env files
+web/.env
+web/.env.local
+web/.env.development.local
+web/.env.test.local
+web/.env.production.local
+
+# Vercel
+web/.vercel
+
+# Rust
+rust-wasm/target/
+rust-wasm/Cargo.lock
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
