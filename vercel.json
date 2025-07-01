@@ -1,7 +1,7 @@
 {
   "version": 2,
   "buildCommand": "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && source ~/.cargo/env && curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh && cd rust-wasm && chmod +x build.sh && ./build.sh && cd ../web && npm run build",
-  "outputDirectory": "web/out",
+  "outputDirectory": "web/.next",
   "installCommand": "cd web && npm install",
   "headers": [
     {

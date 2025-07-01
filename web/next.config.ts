@@ -1,16 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: 'export',
-  trailingSlash: true,
-  distDir: 'out',
-  images: {
-    unoptimized: true,
-  },
   webpack: (config, { isServer }) => {
     config.experiments = {
       ...config.experiments,
       asyncWebAssembly: true,
+      layers: true,
     };
 
     config.module.rules.push({
@@ -18,7 +13,7 @@ const nextConfig: NextConfig = {
       type: 'webassembly/async',
     });
 
-    // 确保WASM文件被正确复制
+    // 确保WASM文件被正确处理
     if (!isServer) {
       config.resolve.fallback = {
         ...config.resolve.fallback,
