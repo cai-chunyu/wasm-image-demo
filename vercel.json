@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "cd rust-wasm && chmod +x build.sh && ./build.sh && cd ../web && npm run build",
+  "buildCommand": "curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh && cd rust-wasm && chmod +x build.sh && ./build.sh && cd ../web && npm run build",
   "outputDirectory": "web/out",
   "installCommand": "cd web && npm install",
   "headers": [
