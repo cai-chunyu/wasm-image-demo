@@ -21,8 +21,7 @@ export default function FilterPanel({
     const loadWasm = async () => {
       if (!wasmModule) {
         try {
-          const wasm = await import('@/public/wasm/rust_wasm');
-          await wasm.default();
+          const wasm = await import('@/lib/wasm/rust_wasm');
           wasmModule = wasm;
         } catch (error) {
           console.error('Failed to load WASM module:', error);
