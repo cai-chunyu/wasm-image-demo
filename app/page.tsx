@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import ImageUploader from '@/components/ImageUploader';
 import ImageComparison from '@/components/ImageComparison';
 import FilterPanel from '@/components/FilterPanel';
@@ -9,6 +9,27 @@ export default function Home() {
   const [originalImage, setOriginalImage] = useState<string | null>(null);
   const [processedImage, setProcessedImage] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
+
+  // 加载默认图片
+  useEffect(() => {
+    const loadDefaultImage = async () => {
+      try {
+        const response = await fetch('/DSC_0849.jpg');
+        const blob = await response.blob();
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          if (event.target?.result) {
+            setOriginalImage(event.target.result as string);
+          }
+        };
+        reader.readAsDataURL(blob);
+      } catch (error) {
+        console.error('Failed to load default image:', error);
+      }
+    };
+
+    loadDefaultImage();
+  }, []);
 
   const handleImageUpload = useCallback((imageData: string) => {
     setOriginalImage(imageData);
