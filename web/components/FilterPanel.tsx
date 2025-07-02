@@ -1,14 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { applyGrayscale, applyBlur, applyEdgeDetection } from '@/lib/wasm-loader';
 
 interface FilterPanelProps {
   originalImage: string;
   onFilterApply: (processedImage: string) => void;
   onProcessingChange: (isProcessing: boolean) => void;
 }
-
-let wasmModule: any = null;
 
 export default function FilterPanel({
   originalImage,
@@ -17,29 +16,15 @@ export default function FilterPanel({
 }: FilterPanelProps) {
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
 
-  useEffect(() => {
-    const loadWasm = async () => {
-      if (!wasmModule) {
-        try {
-          const wasm = await import('@/lib/wasm/rust_wasm');
-          wasmModule = wasm;
-        } catch (error) {
-          console.error('Failed to load WASM module:', error);
-        }
-      }
-    };
-    loadWasm();
-  }, []);
-
   const applyFilter = async (filterType: string) => {
-    if (!wasmModule || !originalImage) return;
+    if (!originalImage) return;
 
     setSelectedFilter(filterType);
     onProcessingChange(true);
 
     try {
       const img = new Image();
-      img.onload = () => {
+      img.onload = async () => {
         const canvas = document.createElement('canvas');
         canvas.width = img.width;
         canvas.height = img.height;
@@ -54,13 +39,13 @@ export default function FilterPanel({
 
           switch (filterType) {
             case 'grayscale':
-              processedBytes = wasmModule.apply_grayscale(rawPixels, canvas.width, canvas.height);
+              processedBytes = await applyGrayscale(rawPixels, canvas.width, canvas.height);
               break;
             case 'blur':
-              processedBytes = wasmModule.apply_blur(rawPixels, canvas.width, canvas.height);
+              processedBytes = await applyBlur(rawPixels, canvas.width, canvas.height);
               break;
             case 'edge':
-              processedBytes = wasmModule.apply_edge_detection(rawPixels, canvas.width, canvas.height);
+              processedBytes = await applyEdgeDetection(rawPixels, canvas.width, canvas.height);
               break;
             default:
               return;
