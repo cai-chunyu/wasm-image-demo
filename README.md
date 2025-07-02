@@ -1,58 +1,36 @@
-# Rust WASM 图像处理 Demo
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-这是一个简单的演示项目，展示了如何使用 Rust 编写的 WebAssembly 模块在 Next.js 应用中进行图像处理。
+## Getting Started
 
-## 功能
-
-- 拖拽上传图片
-- 三种图像滤镜：
-  - 灰度转换
-  - 模糊效果
-  - 边缘检测
-- 左右滑块对比原图和处理后的图片
-
-## 项目结构
-
-```
-wasm-image-demo/
-├── rust-wasm/          # Rust WASM 模块
-│   ├── src/lib.rs      # 图像处理函数
-│   └── Cargo.toml
-└── web/                # Next.js 前端
-    ├── app/page.tsx    # 主页面
-    └── components/     # React 组件
-```
-
-## 运行步骤
-
-### 1. 构建 WASM 模块
+First, run the development server:
 
 ```bash
-cd rust-wasm
-./build.sh
-```
-
-### 2. 运行 Next.js 应用
-
-```bash
-cd web
-npm install
 npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-### 3. 访问应用
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-打开浏览器访问 http://localhost:3000
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## 技术栈
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-- Rust + wasm-bindgen + photon-rs
-- Next.js + TypeScript + Tailwind CSS
-- WebAssembly
+## Learn More
 
-## 使用说明
+To learn more about Next.js, take a look at the following resources:
 
-1. 拖拽或点击上传一张图片
-2. 选择一个滤镜效果
-3. 使用滑块对比原图和处理后的效果
-4. 可以上传新图片重新开始
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

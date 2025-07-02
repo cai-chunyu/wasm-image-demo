@@ -1,9 +1,7 @@
 {
   "version": 2,
   "framework": "nextjs",
-  "rootDirectory": "web",
-  "buildCommand": "cd .. && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && source ~/.cargo/env && curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh && cd rust-wasm && chmod +x build.sh && ./build.sh && cd ../web && npm run build",
-  "installCommand": "npm install",
+  "buildCommand": "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && source ~/.cargo/env && curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh && cd rust-wasm && chmod +x build.sh && ./build.sh && cd .. && npm run build",
   "headers": [
     {
       "source": "/(.*)",
